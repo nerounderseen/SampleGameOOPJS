@@ -1,17 +1,17 @@
 class Game {
-
+  //Properties
   CanvasElement;
   Context;
-  Width = GAME_WIDTH;
-  Height = GAME_HEIGHT;
+  DisplayWidth = GAME_WIDTH;
+  DisplayHeight = GAME_HEIGHT;
   BackgroundColor = Colors.CornFlowerBlue;
   GameObjects = [];
 
 
   Initialize = () => {
     this.CanvasElement = document.createElement("canvas");
-    this.CanvasElement.width = this.Width;
-    this.CanvasElement.height = this.Height;
+    this.CanvasElement.width = this.DisplayWidth;
+    this.CanvasElement.height = this.DisplayHeight;
     this.CanvasElement.style.display = "block";
     this.CanvasElement.style.margin = "auto";
     this.CanvasElement.style.border = "1px solid white";
@@ -20,40 +20,39 @@ class Game {
 
     this.Context = this.CanvasElement.getContext("2d");
 
-    // Initialize FPS Object
+    //FPS Counter
     let fpsCounter = new FPSCounter(this);
-    fpsCounter.Position.X = 10;
-    fpsCounter.Position.Y = 10;
-    fpsCounter.FontSize = 40;
     this.GameObjects.push(fpsCounter);
 
-    let square1 = new GameObject(this);
-    square1.Position.Y = 100;
-    square1.Width = 100;
-    square1.Height = 100;
-    this.GameObjects.push(square1);
+    //Ball Object
+    let circle = new GameObject(this);
+    circle.Scale = 50;
+    this.GameObjects.push(circle);
 
-    let rectangle = new GameObject(this);
-    rectangle.Width = 200;
-    rectangle.Height = 100;
-    rectangle.Position.X = 400;
-    rectangle.Position.Y = 100;
-    this.GameObjects.push(rectangle);
+    //Left Platform Object
+    let leftPlatform = new StaticGameObject(this);
+    leftPlatform.Position.X = 0;
+    leftPlatform.Position.Y = 718;
+    leftPlatform.Height = 50;
+    leftPlatform.Width = 400;
+    this.GameObjects.push(leftPlatform);
 
-    let rectangle2 = new GameObject(this);
-    rectangle2.Width = 100;
-    rectangle2.Height = 200;
-    rectangle2.Position.X = 400;
-    rectangle2.Position.Y = 200;
-    this.GameObjects.push(rectangle2);
+    //Right Platform Object
+    let rightPlatform = new StaticGameObject(this);
+    rightPlatform.Position.X = 624;
+    rightPlatform.Position.Y = 418;
+    rightPlatform.Height = 50;
+    rightPlatform.Width = 400;
+    this.GameObjects.push(rightPlatform);
 
     requestAnimationFrame(() => this.Draw());
-    setInterval(() => this.Update, 6.94);
+    setInterval(() => this.Update(), 6.94);
   }
 
   ClearDraw = () => {
+    //Reset/Redraw Canvas Layer
     this.Context.fillStyle = this.BackgroundColor;
-    this.Context.fillRect(0, 0, this.Width, this.Height);
+    this.Context.fillRect(0, 0, this.DisplayWidth, this.DisplayHeight);
   }
 
   Draw = () => {
@@ -66,8 +65,10 @@ class Game {
   }
 
   Update = () => {
+
     for (let i in this.GameObjects)
       this.GameObjects[i].Update();
-  }
 
+  }
 }
+
