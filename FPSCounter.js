@@ -1,5 +1,5 @@
-class FPSCounter extends StaticGameObject {
-  //Variables
+class FPSCounter extends GameObject {
+  //Properties
   CurrentFPS = 0;
   LastFPS = 0;
   LastFPSDate = moment().valueOf();
@@ -11,9 +11,8 @@ class FPSCounter extends StaticGameObject {
     this.Position.X = 0;
     this.Position.Y = 0;
   }
-
+  //Methods
   Draw() {
-    //FPS Logic
     this.CurrentFPS++;
     const currentMoment = moment().valueOf();
     if (currentMoment - this.LastFPSDate >= this.Interval) {
@@ -21,7 +20,7 @@ class FPSCounter extends StaticGameObject {
       this.LastFPS = this.CurrentFPS;
       this.CurrentFPS = 0;
     }
-    //Font Style, Color & Position
+
     this.Game.Context.font = `${this.FontSize}px Verdana`;
     this.Game.Context.fillStyle = Colors.Lime;
     this.Game.Context.fillText(this.LastFPS, this.Position.X, this.Position.Y + this.FontSize);

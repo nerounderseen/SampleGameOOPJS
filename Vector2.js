@@ -1,4 +1,4 @@
-class Vector2DPosition {
+class Vector2 {
   //Properties
   X = 0;
   Y = 0;

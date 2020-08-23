@@ -1,5 +1,4 @@
 const Colors = Object.freeze({
-  //Properties
   Red: "red",
   Blue: "blue",
   Green: "green",
