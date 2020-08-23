@@ -23,7 +23,7 @@ class Collision {
   }
 
   DetectCollision(o, i) {
-    if ((o.Position.Y + o.Scale < i.Position.Y - i.Height) && (o.Position.X + o.Scale < i.Position.X) && (o.Position.X < o.Width)) {
+    if ((o.Position.Y + o.Scale < i.Position.Y - i.Height) || ((o.Position.X + o.Scale < i.Position.X) || (o.Position.X < o.Width))) {
       return false;
     }
     return true;

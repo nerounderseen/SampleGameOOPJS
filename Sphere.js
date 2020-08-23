@@ -19,6 +19,7 @@ class Sphere extends GameObject {
       0,
       2 * Math.PI);
     this.Game.Context.stroke();
+    super.Draw();
   }
   Update() {
 

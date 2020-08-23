@@ -15,6 +15,7 @@ class Quadrilateral extends GameObject {
       this.Position.Y,
       this.Width,
       this.Height);
+      super.Draw();
   }
   Update() {
 
