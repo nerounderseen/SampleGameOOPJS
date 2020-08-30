@@ -1,5 +1,6 @@
-class Vector2 {
+class Vector2D {
   //Properties
   X = 0;
   Y = 0;
+
 }
